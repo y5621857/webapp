@@ -6,7 +6,7 @@
           <h1 class="logo-name">IN+</h1>
         </div>
         <h3>Register to IN+</h3>
-        <p>Create account to see it in action.</p>
+        <p>注册一个新用户</p>
         <form class="m-t" role="form" action="">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="用户名" required="">
