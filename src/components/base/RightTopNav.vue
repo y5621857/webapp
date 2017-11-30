@@ -8,7 +8,7 @@
           </a>
           <form role="search" class="navbar-form-custom" action="search_results.html">
             <div class="form-group">
-              <input type="text" placeholder="Search for something..."
+              <input type="text" placeholder="搜索关键字..."
                      class="form-control" name="top-search" id="top-search">
             </div>
           </form>
@@ -18,14 +18,14 @@
             <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
           </li>
           <li class="dropdown">
-            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="index.html#">
+            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:;">
               <i class="fa fa-envelope"></i>
               <span class="label label-warning">16</span>
             </a>
             <ul class="dropdown-menu dropdown-messages">
               <li>
                 <div class="dropdown-messages-box">
-                  <a href="profile.html" class="pull-left">
+                  <a href="javascript:;" class="pull-left">
                     <img alt="image" class="img-circle" src="/static/img/a7.jpg">
                   </a>
                   <div class="media-body">
@@ -38,7 +38,7 @@
               <li class="divider"></li>
               <li>
                 <div class="dropdown-messages-box">
-                  <a href="profile.html" class="pull-left">
+                  <a href="javascript:;" class="pull-left">
                     <img alt="image" class="img-circle" src="/static/img/a4.jpg">
                   </a>
                   <div class="media-body ">
@@ -51,7 +51,7 @@
               <li class="divider"></li>
               <li>
                 <div class="dropdown-messages-box">
-                  <a href="profile.html" class="pull-left">
+                  <a href="javascript:;" class="pull-left">
                     <img alt="image" class="img-circle" src="/static/img/profile.jpg">
                   </a>
                   <div class="media-body ">
@@ -64,21 +64,22 @@
               <li class="divider"></li>
               <li>
                 <div class="text-center link-block">
-                  <a href="mailbox.html">
-                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                  <a href="javascript:;">
+                    <i class="fa fa-envelope"></i>
+                    <strong>查看所有邮件</strong>
                   </a>
                 </div>
               </li>
             </ul>
           </li>
           <li class="dropdown">
-            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="index.html#">
+            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:;">
               <i class="fa fa-bell"></i>
               <span class="label label-primary">8</span>
             </a>
             <ul class="dropdown-menu dropdown-alerts">
               <li>
-                <a href="mailbox.html">
+                <a href="javascript:;">
                   <div>
                     <i class="fa fa-envelope fa-fw"></i> You have 16 messages
                     <span class="pull-right text-muted small">4 minutes ago</span>
@@ -87,7 +88,7 @@
               </li>
               <li class="divider"></li>
               <li>
-                <a href="profile.html">
+                <a href="javascript:;">
                   <div>
                     <i class="fa fa-twitter fa-fw"></i> 3 New Followers
                     <span class="pull-right text-muted small">12 minutes ago</span>
@@ -96,7 +97,7 @@
               </li>
               <li class="divider"></li>
               <li>
-                <a href="grid_options.html">
+                <a href="javascript:;">
                   <div>
                     <i class="fa fa-upload fa-fw"></i> Server Rebooted
                     <span class="pull-right text-muted small">4 minutes ago</span>
@@ -106,8 +107,8 @@
               <li class="divider"></li>
               <li>
                 <div class="text-center link-block">
-                  <a href="notifications.html">
-                    <strong>See All Alerts</strong>
+                  <a href="javascript:;">
+                    <strong>查看所有通知</strong>
                     <i class="fa fa-angle-right"></i>
                   </a>
                 </div>
@@ -115,8 +116,8 @@
             </ul>
           </li>
           <li>
-            <a href="login.html">
-              <i class="fa fa-sign-out"></i> Log out
+            <a href="javascript:;">
+              <i class="fa fa-sign-out"></i> 退出
             </a>
           </li>
           <li>

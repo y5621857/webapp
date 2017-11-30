@@ -12,13 +12,14 @@
         <p></p>
         <el-form :model="Form" :rules="rules" ref="Form" class="demo-ruleForm" status-icon>
           <el-form-item prop="name">
-            <el-input placeholder="用户名" v-model="Form.name" auto-complete="off"></el-input>
+            <el-input placeholder="用户名" v-model="Form.name" auto-complete="off" @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
           <el-form-item prop="pass">
-            <el-input type="password" placeholder="密码" v-model="Form.pass" auto-complete="off"></el-input>
+            <el-input type="password" placeholder="密码" v-model="Form.pass" auto-complete="off" @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
           <el-form-item>
-            <button type="button" class="btn btn-primary block full-width m-b" @click="submitForm('Form')">登录
+            <button type="button" class="btn btn-primary block full-width m-b" @click="submitForm('Form')"
+                    @keyup.enter.native="submitForm('Form')">登录
             </button>
             <router-link :to="{name:'Home'}" class="btn btn-primary block full-width m-b">登录跳转</router-link>
             <router-link :to="{name:'Forgot'}">
@@ -39,31 +40,27 @@
 </template>
 
 <script>
-  var validateName = (rule, value, callback) => {
-    if (!/^\w+$/.test(value)) {
-      callback(new Error('请输入用户名，数字、字母、下划线组成'));
-    } else if (value.length<6) {
-      callback(new Error('至少6位字符串'));
-    } else {
-      callback()
-    }
-  };
-  var validatePass = (rule, value, callback) => {
-    if (!/^\w+$/.test(value)) {
-      callback(new Error('请输入密码，数字、字母、下划线组成'));
-    } else if (value.length<6) {
-      callback(new Error('至少6位字符串'));
-    } else {
-      callback()
-    }
-  };
-  
   export default {
     name: 'Login',
     mounted() {
     
     },
     data() {
+      //TODO 验证器
+      var validateName = (rule, value, callback) => {
+        if (!/^\w+$/.test(value)) {
+          callback(new Error('请输入用户名，数字、字母、下划线组成'));
+        } else {
+          callback()
+        }
+      };
+      var validatePass = (rule, value, callback) => {
+        if (!/^\w+$/.test(value)) {
+          callback(new Error('请输入密码，数字、字母、下划线组成'));
+        } else {
+          callback()
+        }
+      };
       return {
         Form: {
           name: '',
@@ -71,9 +68,13 @@
         },
         rules: {
           name: [
+            {required: true, message: '请输入用户名', trigger: 'blur'},
+            {min: 6, max: 20, message: "6-20个字符", trigger: 'blur'},
             {validator: validateName, trigger: 'blur'}
           ],
           pass: [
+            {required: true, message: '请输入密码', trigger: 'blur'},
+            {min: 6, max: 20, message: "6-20个字符", trigger: 'blur'},
             {validator: validatePass, trigger: 'blur'}
           ]
         }

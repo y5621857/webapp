@@ -9,19 +9,24 @@
         <p>注册一个新用户</p>
         <el-form :model="Form" :rules="rules" ref="Form" class="demo-ruleForm" status-icon>
           <el-form-item prop="name">
-            <el-input placeholder="用户名" v-model="Form.name" auto-complete="off"></el-input>
+            <el-input placeholder="用户名" v-model="Form.name" auto-complete="off"
+                      @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
           <el-form-item prop="email">
-            <el-input placeholder="邮箱" v-model="Form.email" auto-complete="off"></el-input>
+            <el-input placeholder="邮箱" v-model="Form.email" auto-complete="off"
+                      @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
           <el-form-item prop="phone">
-            <el-input placeholder="电话" v-model="Form.phone" auto-complete="off"></el-input>
+            <el-input placeholder="电话" v-model="Form.phone" auto-complete="off"
+                      @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
           <el-form-item prop="pass">
-            <el-input type="password" placeholder="密码" v-model="Form.pass" auto-complete="off"></el-input>
+            <el-input type="password" placeholder="密码" v-model="Form.pass" auto-complete="off"
+                      @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
           <el-form-item prop="confirmPass">
-            <el-input type="password" placeholder="请再次输入密码" v-model="Form.confirmPass" auto-complete="off"></el-input>
+            <el-input type="password" placeholder="请再次输入密码" v-model="Form.confirmPass" auto-complete="off"
+                      @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
           <el-form-item>
             <button type="button" class="btn btn-primary block full-width m-b" @click="submitForm('Form')">注册
@@ -73,7 +78,7 @@
       var validateConfirmPass = (rule, value, callback) => {
         if (value !== this.Form.pass) {
           callback(new Error('两次输入密码不一致!'));
-        }else {
+        } else {
           callback()
         }
       };

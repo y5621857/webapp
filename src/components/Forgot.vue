@@ -10,9 +10,11 @@
             </p>
             <div class="row">
               <div class="col-lg-12">
-                <el-form ref="Form" :model="Form" :rules="rules" class="demo-ruleForm" status-icon>
+                <el-form ref="Form" :model="Form" :rules="rules" class="demo-ruleForm" status-icon
+                         @submit.native.prevent>
                   <el-form-item prop="email">
-                    <el-input placeholder="邮箱地址" v-model="Form.email" auto-complete="off"></el-input>
+                    <el-input placeholder="邮箱地址" v-model="Form.email" auto-complete="off"
+                              @keyup.enter.native="submitForm('Form')"></el-input>
                   </el-form-item>
                   <button type="button" class="btn btn-primary block full-width m-b" @click="submitForm('Form')">找回密码
                   </button>
@@ -39,21 +41,24 @@
 <script>
   export default {
     name: 'Forgot',
+    mounted() {
+    
+    },
     data() {
       return {
-        Form:{
-          email:''
+        Form: {
+          email: ''
         },
-        rules:{
-          email:[
+        rules: {
+          email: [
             {required: true, message: '请输入邮箱地址', trigger: 'blur'},
             {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur'}
           ]
         }
       }
     },
-    methods:{
-      submitForm(formName){
+    methods: {
+      submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             const loading = this.$loading({
