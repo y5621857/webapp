@@ -1,84 +1,79 @@
 <template>
   <div>
-    <div class="small-chat-box fadeInRight animated">
-      
+    <div class="small-chat-box fadeInRight animated" ref="small-chat-box">
       <div class="heading" draggable="true">
         <small class="chat-date pull-right">
           02.19.2015
         </small>
-        Small chat
+        聊天框
       </div>
-      
-      <div class="content">
-        
+      <div class="content" ref="small-chat-box-content">
         <div class="left">
           <div class="author-name">
-            Monica Jackson
+            路人甲
             <small class="chat-date">
               10:02 am
             </small>
           </div>
           <div class="chat-message active">
-            Lorem Ipsum is simply dummy text input.
+            你好！
           </div>
-        
         </div>
         <div class="right">
           <div class="author-name">
-            Mick Smith
+            路人乙
             <small class="chat-date">
               11:24 am
             </small>
           </div>
           <div class="chat-message">
-            Lorem Ipsum is simpl.
+            你好啊~
           </div>
         </div>
         <div class="left">
           <div class="author-name">
-            Alice Novak
+            路人甲
             <small class="chat-date">
               08:45 pm
             </small>
           </div>
           <div class="chat-message active">
-            Check this stock char.
+            测试一下聊天~
           </div>
         </div>
         <div class="right">
           <div class="author-name">
-            Anna Lamson
+            路人乙
             <small class="chat-date">
               11:24 am
             </small>
           </div>
           <div class="chat-message">
-            The standard chunk of Lorem Ipsum
+            收到！
           </div>
         </div>
         <div class="left">
           <div class="author-name">
-            Mick Lane
+            路人甲
             <small class="chat-date">
               08:45 pm
             </small>
           </div>
           <div class="chat-message active">
-            I belive that. Lorem Ipsum is simply dummy text.
+            我相信，这样可以~
           </div>
         </div>
-      
-      
       </div>
       <div class="form-chat">
-        <div class="input-group input-group-sm"><input type="text" class="form-control"> <span
-          class="input-group-btn"> <button
-          class="btn btn-primary" type="button">Send
-                </button> </span></div>
+        <div class="input-group input-group-sm">
+          <input type="text" class="form-control">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button">发送</button>
+          </span>
+        </div>
       </div>
-    
     </div>
-    <div id="small-chat">
+    <div id="small-chat" @click="toggleSmallChatBox('small-chat','small-chat-box')" ref="small-chat">
       <span class="badge badge-warning pull-right">5</span>
       <a class="open-small-chat">
         <i class="fa fa-comments"></i>
@@ -90,8 +85,20 @@
 <script>
   export default {
     name: 'SmallChat',
+    mounted() {
+      $(this.$refs['small-chat-box-content']).slimScroll({
+        height: '234px',
+        railOpacity: 0.4
+      });
+    },
     data() {
       return {}
+    },
+    methods: {
+      toggleSmallChatBox(btn,box) {
+        $(this.$refs[btn]).find('i').toggleClass('fa-comments').toggleClass('fa-remove');
+        $(this.$refs[box]).toggleClass('active');
+      }
     }
   }
 </script>
