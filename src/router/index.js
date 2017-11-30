@@ -7,6 +7,7 @@ import Home from '@/components/Home'
 import Index from '@/components/Index'
 import Table from '@/components/Table'
 
+
 Vue.use(Router)
 
 export default new Router({

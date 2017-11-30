@@ -98,11 +98,7 @@
                 </div>
                 <div class="ibox-content">
                   <div>
-                    
                     <div class="pull-right text-right">
-                      
-                      <span class="bar_dashboard">5,3,9,6,5,9,7,3,5,2,4,7,3,2,7,9,6,4,5,7,3,2,1,0,9,5,6,8,3,2,1</span>
-                      <br/>
                       <small class="font-bold">$ 20 054.43</small>
                     </div>
                     <h4>NYS report new data!
@@ -314,11 +310,6 @@
                         <p>
                           Conference on the sales results for the previous year. Monica please examine sales trends in marketing and products. Below please find the current status of the
                           sale.
-                        </p>
-                        <p>
-                          <span data-diameter="40" class="updating-chart">
-                            5,3,9,6,5,9,7,3,5,2,5,3,9,6,5,9,4,7,3,2,9,8,7,4,5,1,2,9,5,4,7,2,7,7,3,5,2
-                          </span>
                         </p>
                       </div>
                     </div>

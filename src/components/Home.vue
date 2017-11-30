@@ -6,10 +6,8 @@
     <div id="page-wrapper" class="gray-bg dashbard-1">
       <!--顶部导航-->
       <right-top-nav></right-top-nav>
-      
-      <keep-alive>
-        <router-view/>
-      </keep-alive>
+  
+      <router-view/>
       
       <!--页脚-->
       <footer-bar></footer-bar>

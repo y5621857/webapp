@@ -7,26 +7,29 @@
         </div>
         <h3>Welcome to IN+</h3>
         <p>
-          Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
-          Continually expanded and constantly improved Inspinia Admin Them (IN+)
+          完美的设计和精确的管理，不断扩展和不断改进的Inspinia管理(IN +)
         </p>
-        <p>Login in. To see it in action.</p>
-        <form class="m-t" role="form" action="index.html">
-          <div class="form-group">
-            <input type="email" class="form-control" placeholder="用户名" required="">
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" placeholder="密码" required="">
-          </div>
-          <router-link :to="{name:'Home'}" class="btn btn-primary block full-width m-b">登录</router-link>
-          <router-link :to="{name:'Forgot'}">
-            <small>忘记密码？</small>
-          </router-link>
-          <p class="text-muted text-center">
-            <small> </small>
-          </p>
-          <router-link :to="{name:'Regist'}" class="btn btn-sm btn-white btn-block">注册</router-link>
-        </form>
+        <p></p>
+        <el-form :model="Form" :rules="rules" ref="Form" class="demo-ruleForm" status-icon>
+          <el-form-item prop="name">
+            <el-input placeholder="用户名" v-model="Form.name" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item prop="pass">
+            <el-input type="password" placeholder="密码" v-model="Form.pass" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <button type="button" class="btn btn-primary block full-width m-b" @click="submitForm('Form')">登录
+            </button>
+            <router-link :to="{name:'Home'}" class="btn btn-primary block full-width m-b">登录跳转</router-link>
+            <router-link :to="{name:'Forgot'}">
+              <small>忘记密码？</small>
+            </router-link>
+            <p class="text-muted text-center">
+              <small></small>
+            </p>
+            <router-link :to="{name:'Regist'}" class="btn btn-sm btn-white btn-block">注册</router-link>
+          </el-form-item>
+        </el-form>
         <p class="m-t">
           <small>Inspinia we app framework base on Bootstrap 3 &copy; 2017</small>
         </p>
@@ -36,6 +39,24 @@
 </template>
 
 <script>
+  var validateName = (rule, value, callback) => {
+    if (!/^\w+$/.test(value)) {
+      callback(new Error('请输入用户名，数字、字母、下划线组成'));
+    } else if (value.length<6) {
+      callback(new Error('至少6位字符串'));
+    } else {
+      callback()
+    }
+  };
+  var validatePass = (rule, value, callback) => {
+    if (!/^\w+$/.test(value)) {
+      callback(new Error('请输入密码，数字、字母、下划线组成'));
+    } else if (value.length<6) {
+      callback(new Error('至少6位字符串'));
+    } else {
+      callback()
+    }
+  };
   
   export default {
     name: 'Login',
@@ -43,14 +64,52 @@
     
     },
     data() {
-      return {}
+      return {
+        Form: {
+          name: '',
+          pass: ''
+        },
+        rules: {
+          name: [
+            {validator: validateName, trigger: 'blur'}
+          ],
+          pass: [
+            {validator: validatePass, trigger: 'blur'}
+          ]
+        }
+      }
+    },
+    methods: {
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            const loading = this.$loading({
+              lock: true,
+              text: '认证中请稍等...',
+              spinner: 'el-icon-loading',
+              background: 'rgba(0, 0, 0, 0.7)'
+            });
+            setTimeout(() => {
+              loading.close();
+              this.$message.error('账号密码有误，请重新填写');
+            }, 2000);
+          } else {
+            return false;
+          }
+        });
+      },
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .middle-box {
+    padding-top: 0;
+  }
+  
   .white_bg {
+    overflow-y: scroll;
     position: fixed;
     top: 0;
     bottom: 0;
