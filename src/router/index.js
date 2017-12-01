@@ -31,7 +31,7 @@ export default new Router({
       component: Home,
       beforeEnter(to, from, next) {
         // TODO 登录验证
-        var Auth_token = Cookies.get('Auth_token') || false
+        var Auth_token = Cookies.get('WabApp_Auth_token') || false
         
         if (Auth_token) {
           next({name:to})

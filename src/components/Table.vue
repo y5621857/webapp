@@ -1,16 +1,16 @@
 <template>
   <div>
-    <table-data-table></table-data-table>
+    <data-table></data-table>
   </div>
 </template>
 
 <script>
-  import TableDataTable from '@/components/element/TableDataTable'
+  import DataTable from '@/components/element/DataTable'
   
   export default {
     name: 'Table',
     components:{
-      TableDataTable
+      DataTable
     },
     data() {
       return {}

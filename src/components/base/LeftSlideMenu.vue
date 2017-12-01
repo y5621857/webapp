@@ -32,24 +32,28 @@
             <a href="javascript:;">
               <i :class="list.icon"></i>
               <span class="nav-label">{{list.name}}</span>
-              <span class="label pull-right" :class="list.hasNew.icon" v-if="list.hasNew.type">{{list.hasNew.value}}</span>
+              <span class="label pull-right" :class="list.hasNew.icon"
+                    v-if="list.hasNew.type">{{list.hasNew.value}}</span>
               <span class="fa arrow" v-else></span>
             </a>
             <ul class="nav nav-second-level collapse">
               <li v-for="(item,index) in list.childern" key="index">
-                <a href="javascript:;">{{item.name}}
+                <router-link :to="item.link">
+                  {{item.name}}
                   <span class="label pull-right" :class="item.hasNew.icon"
                         v-if="item.hasNew.type">{{item.hasNew.value}}</span>
-                </a>
+                </router-link>
+              
               </li>
             </ul>
           </template>
           <template v-else>
-            <a href="javascript:;">
+            <router-link :to="list.link">
               <i :class="list.icon"></i>
               <span class="nav-label">{{list.name}}</span>
-              <span class="label pull-right" :class="list.hasNew.icon" v-if="list.hasNew.type">{{list.hasNew.value}}</span>
-            </a>
+              <span class="label pull-right" :class="list.hasNew.icon"
+                    v-if="list.hasNew.type">{{list.hasNew.value}}</span>
+            </router-link>
           </template>
         </li>
       </ul>
@@ -132,7 +136,7 @@
           return [
             {
               name: '主页',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-th-large',
               active: true,
               hasNew: {
@@ -143,7 +147,7 @@
               childern: [
                 {
                   name: '主页 v.1',
-                  link: '',
+                  link: '\/home/index',
                   active: false,
                   hasNew: {
                     type: true,
@@ -152,7 +156,7 @@
                   },
                 }, {
                   name: '主页 v.2',
-                  link: '',
+                  link: '\/home/index',
                   active: false,
                   hasNew: {
                     type: false,
@@ -161,7 +165,7 @@
                   },
                 }, {
                   name: '主页 v.3',
-                  link: '',
+                  link: '\/home/index',
                   active: false,
                   hasNew: {
                     type: false,
@@ -170,7 +174,7 @@
                   },
                 }, {
                   name: '主页 v.4',
-                  link: '',
+                  link: '\/home/index',
                   active: false,
                   hasNew: {
                     type: false,
@@ -180,8 +184,18 @@
                 },
               ]
             }, {
+              name: '网格',
+              link: '\/home/table',
+              icon: 'fa fa-laptop',
+              active: false,
+              hasNew: {
+                type: false,
+                icon: '',
+                value: ''
+              },
+            }, {
               name: '其他页面',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-files-o',
               active: false,
               hasNew: {
@@ -191,7 +205,7 @@
               },
             }, {
               name: '布局',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-diamond',
               active: false,
               hasNew: {
@@ -201,7 +215,7 @@
               },
             }, {
               name: '邮箱',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-envelope',
               active: false,
               hasNew: {
@@ -211,7 +225,7 @@
               },
             }, {
               name: '图表',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-bar-chart-o',
               active: false,
               hasNew: {
@@ -221,7 +235,7 @@
               },
             }, {
               name: '指标',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-pie-chart',
               active: false,
               hasNew: {
@@ -231,7 +245,7 @@
               },
             }, {
               name: '部件',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-flask',
               active: false,
               hasNew: {
@@ -241,7 +255,7 @@
               },
             }, {
               name: '表单',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-edit',
               active: false,
               hasNew: {
@@ -251,7 +265,7 @@
               },
             }, {
               name: '应用',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-desktop',
               active: false,
               hasNew: {
@@ -261,7 +275,7 @@
               },
             }, {
               name: '杂项',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-globe',
               active: false,
               hasNew: {
@@ -271,7 +285,7 @@
               },
             }, {
               name: 'UI 组件',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-flask',
               active: false,
               hasNew: {
@@ -280,18 +294,8 @@
                 value: ''
               },
             }, {
-              name: '网格',
-              link: '',
-              icon: 'fa fa-laptop',
-              active: false,
-              hasNew: {
-                type: false,
-                icon: '',
-                value: ''
-              },
-            }, {
               name: '电子商务',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-shopping-cart',
               active: false,
               hasNew: {
@@ -301,7 +305,7 @@
               },
             }, {
               name: '走廊',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-picture-o',
               active: false,
               hasNew: {
@@ -311,7 +315,7 @@
               },
             }, {
               name: '菜单',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-sitemap',
               active: false,
               hasNew: {
@@ -321,7 +325,7 @@
               },
             }, {
               name: '动画',
-              link: '',
+              link: '\/home/index',
               icon: 'fa fa-magic',
               active: false,
               hasNew: {
@@ -340,7 +344,7 @@
     },
     methods: {
       Logout() {
-        Cookies.remove('Auth_token', {path: '/'})
+        Cookies.remove('WabApp_Auth_token', {path: '/'})
         this.$router.push({path: '/'})
       }
     }

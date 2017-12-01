@@ -118,9 +118,9 @@
                 duration: 1500,
                 onClose() {
                   if (_self.Form.remember) {
-                    document.cookie = "Auth_token=abc; expires=" + new Date(_self.cookie.time).toGMTString() + "; path=/"
+                    document.cookie = "WabApp_Auth_token=abc; expires=" + new Date(_self.cookie.time).toGMTString() + "; path=/"
                   } else {
-                    document.cookie = "Auth_token=" + _self.cookie.Auth_token + "; path=/"
+                    document.cookie = "WabApp_Auth_token=" + _self.cookie.Auth_token + "; path=/"
                   }
                   _self.$router.push({path: '/home'})
                 }

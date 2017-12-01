@@ -139,8 +139,8 @@
     },
     methods:{
       Logout() {
-        Cookies.remove('Auth_token', { path: '' })
-        this.$router.push({path:'/'})
+        Cookies.remove('WabApp_Auth_token', {path: '/'})
+        this.$router.push({path: '/'})
       }
     }
   }
