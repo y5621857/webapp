@@ -16,10 +16,13 @@
                     <el-input placeholder="邮箱地址" v-model="Form.email" auto-complete="off"
                               @keyup.enter.native="submitForm('Form')"></el-input>
                   </el-form-item>
-                  <button type="button" class="btn btn-primary block full-width m-b" @click="submitForm('Form')">找回密码
-                  </button>
+                  <el-button type="green" class="full-width m-b" :loading="loading.type"
+                             @click="submitForm('Form')">{{loading.value}}
+                  </el-button>
                 </el-form>
-                <router-link :to="{name:'Login'}" class="btn btn-sm btn-white btn-block">返回</router-link>
+                <router-link :to="{name:'Login'}">
+                  <el-button class="full-width">返回</el-button>
+                </router-link>
               </div>
             </div>
           </div>
@@ -54,6 +57,10 @@
             {required: true, message: '请输入邮箱地址', trigger: 'blur'},
             {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur'}
           ]
+        },
+        loading: {
+          type: false,
+          value: '找回密码'
         }
       }
     },
@@ -61,15 +68,21 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            const loading = this.$loading({
-              lock: true,
-              text: '发送中请稍等...',
-              spinner: 'el-icon-loading',
-              background: 'rgba(0, 0, 0, 0.7)'
-            });
+            this.loading = {
+              type: true,
+              value: '请稍等...'
+            }
+            
             setTimeout(() => {
-              loading.close();
-              this.$message.error('发送失败，请重新提交');
+              this.loading = {
+                type: false,
+                value: '找回密码'
+              }
+              this.$message({
+                type: 'success',
+                message: '邮件已发送，请注意查收！',
+                showClose: true
+              });
             }, 2000);
           } else {
             return false;
@@ -84,6 +97,10 @@
 <style scoped>
   .middle-box {
     padding-top: 0;
+  }
+  
+  .ibox-content {
+    background-color: #f3f3f4;
   }
   
   .white_bg {

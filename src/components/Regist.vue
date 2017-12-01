@@ -29,9 +29,12 @@
                       @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
           <el-form-item>
-            <button type="button" class="btn btn-primary block full-width m-b" @click="submitForm('Form')">注册
-            </button>
-            <router-link :to="{name:'Login'}" class="btn btn-sm btn-white btn-block">登录</router-link>
+            <el-button type="green" class="full-width m-b" :loading="loading.type"
+                       @click="submitForm('Form')">{{loading.value}}
+            </el-button>
+            <router-link :to="{name:'Login'}">
+              <el-button class="full-width">登录</el-button>
+            </router-link>
           </el-form-item>
         </el-form>
         <p class="m-t">
@@ -113,6 +116,10 @@
             {required: true, message: '请再次输入密码', trigger: 'blur'},
             {validator: validateConfirmPass, trigger: 'blur'}
           ]
+        },
+        loading: {
+          type: false,
+          value: '注册'
         }
       }
     },
@@ -120,15 +127,18 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            const loading = this.$loading({
-              lock: true,
-              text: '注册中请稍等...',
-              spinner: 'el-icon-loading',
-              background: 'rgba(0, 0, 0, 0.7)'
-            });
+            this.loading = {
+              type: true,
+              value: '请稍等...'
+            }
+            
             setTimeout(() => {
-              loading.close();
-              this.$message.error('注册失败，请重新提交');
+              this.$message({
+                type: 'success',
+                message: '注册成功！请登录！',
+                showClose: true,
+              });
+              this.$router.push({path: '/'})
             }, 2000);
           } else {
             return false;

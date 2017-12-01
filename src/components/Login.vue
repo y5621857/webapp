@@ -12,23 +12,35 @@
         <p></p>
         <el-form :model="Form" :rules="rules" ref="Form" class="demo-ruleForm" status-icon>
           <el-form-item prop="name">
-            <el-input placeholder="用户名" v-model="Form.name" auto-complete="off" @keyup.enter.native="submitForm('Form')"></el-input>
+            <el-input placeholder="用户名" v-model="Form.name" auto-complete="off"
+                      @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
           <el-form-item prop="pass">
-            <el-input type="password" placeholder="密码" v-model="Form.pass" auto-complete="off" @keyup.enter.native="submitForm('Form')"></el-input>
+            <el-input type="password" placeholder="密码" v-model="Form.pass" auto-complete="off"
+                      @keyup.enter.native="submitForm('Form')"></el-input>
           </el-form-item>
+          <div class="mb8">
+            <div>
+              <el-checkbox v-model="Form.remember">记住我有效期7天</el-checkbox>
+            </div>
+            <small class="default">不是自己的电脑上不要勾选此项</small>
+          </div>
           <el-form-item>
-            <button type="button" class="btn btn-primary block full-width m-b" @click="submitForm('Form')"
-                    @keyup.enter.native="submitForm('Form')">登录
-            </button>
-            <router-link :to="{name:'Home'}" class="btn btn-primary block full-width m-b">登录跳转</router-link>
+            <el-button type="green" class="full-width m-b" :loading="loading.type"
+                       @click="submitForm('Form')">{{loading.value}}
+            </el-button>
+            <router-link :to="{name:'Home'}" class="full-width m-b">
+              <el-button class="full-width m-b">登录跳转</el-button>
+            </router-link>
             <router-link :to="{name:'Forgot'}">
               <small>忘记密码？</small>
             </router-link>
             <p class="text-muted text-center">
               <small></small>
             </p>
-            <router-link :to="{name:'Regist'}" class="btn btn-sm btn-white btn-block">注册</router-link>
+            <router-link :to="{name:'Regist'}">
+              <el-button class="full-width">注册</el-button>
+            </router-link>
           </el-form-item>
         </el-form>
         <p class="m-t">
@@ -64,7 +76,8 @@
       return {
         Form: {
           name: '',
-          pass: ''
+          pass: '',
+          remember: false,
         },
         rules: {
           name: [
@@ -77,6 +90,14 @@
             {min: 6, max: 20, message: "6-20个字符", trigger: 'blur'},
             {validator: validatePass, trigger: 'blur'}
           ]
+        },
+        cookie: {
+          Auth_token: '123',
+          time: new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
+        },
+        loading: {
+          type: false,
+          value: '登录'
         }
       }
     },
@@ -84,15 +105,26 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            const loading = this.$loading({
-              lock: true,
-              text: '认证中请稍等...',
-              spinner: 'el-icon-loading',
-              background: 'rgba(0, 0, 0, 0.7)'
-            });
-            setTimeout(() => {
-              loading.close();
-              this.$message.error('账号密码有误，请重新填写');
+            this.loading = {
+              type: true,
+              value: '请稍等...'
+            }
+            var timer1 = setTimeout(() => {
+              var _self = this
+              this.$message({
+                type: 'success',
+                message: '登录成功！',
+                showClose: true,
+                duration: 1500,
+                onClose() {
+                  if (_self.Form.remember) {
+                    document.cookie = "Auth_token=abc; expires=" + new Date(_self.cookie.time).toGMTString() + "; path=/"
+                  } else {
+                    document.cookie = "Auth_token=" + _self.cookie.Auth_token + "; path=/"
+                  }
+                  _self.$router.push({path: '/home'})
+                }
+              });
             }, 2000);
           } else {
             return false;
@@ -105,6 +137,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .mb8 {
+    margin-bottom: 8px;
+  }
+  
   .middle-box {
     padding-top: 0;
   }

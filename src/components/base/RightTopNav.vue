@@ -116,7 +116,7 @@
             </ul>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="javascript:;" @click="Logout">
               <i class="fa fa-sign-out"></i> 退出
             </a>
           </li>
@@ -136,6 +136,12 @@
     name: 'RightTopNav',
     data() {
       return {}
+    },
+    methods:{
+      Logout() {
+        Cookies.remove('Auth_token', { path: '' })
+        this.$router.push({path:'/'})
+      }
     }
   }
 </script>
